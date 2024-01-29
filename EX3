@@ -1,1 +1,55 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.eniso.tp1;
+import java.util.Scanner;
 
+public class calculateProbability{
+public static double[] calculateProbability(int[][] image){
+
+    System.out.println("entrez le niveau de gris a rechercher");
+    double[] P = new double[256];
+    Scanner read = new Scanner(System.in);
+        int a;
+        a=read.nextInt();
+    
+    int N=0;
+    
+    for(int i = 0; i< 256; i++){
+       for (int j=0; j<image.length ;j++ ){
+        for (int k=0; k<image[0].length ;k++ ){
+            if (image[k][j]==a) {N+=1;}
+        }
+    }
+            P[i] = N / (image.length * image[0].length);
+    }
+    return P;
+}
+public double entropie(int[][] image){
+    double H= 0.0;  
+    double[] p = calculateProbability(image);
+    for (int i=0; i<256 ;i++ ){
+     double A=p[i];
+            
+       //log2
+       int log=0;
+        while (A/2!=0){
+        log+=1;
+        A/=A;}
+        
+       H+=A*log;}
+   
+    H*=-1;
+    return H ;
+    } 
+}
+   
+      
+        
+        
+
+    
+    
+    
+    
